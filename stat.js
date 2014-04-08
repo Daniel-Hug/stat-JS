@@ -35,6 +35,12 @@ var stat = {
 		return Math.pow(stat.product(array), 1 / array.length);
 	},
 
+	harmonicMean: function(array) {
+		return array.length / stat.sum([].map.call(array, function(num) {
+			return 1 / num;
+		}));
+	},
+
 	median: function(array) {
 		[].sort.call(array, function(a, b) {
 			return a - b;
@@ -100,4 +106,4 @@ var stat = {
 };
 
 // Function aliases:
-stat.average = stat.mean;
+stat.average = stat.arithmeticMean = stat.mean;

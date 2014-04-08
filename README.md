@@ -9,8 +9,9 @@ A collection of JavaScript statistical functions for arrays
  - `midrange`
  - `sum`
  - `product`
- - `mean` / `average`
+ - `mean` / `arithmeticMean` / `average`
  - `geometricMean`
+ - `harmonicMean`
  - `median`
  - `modes`
  - `variance`
