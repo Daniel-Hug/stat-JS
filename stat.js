@@ -1,45 +1,55 @@
-var arr = {	
+var stat = {
 	max: function(array) {
 		return Math.max.apply(null, array);
 	},
-	
+
 	min: function(array) {
 		return Math.min.apply(null, array);
 	},
-	
+
 	range: function(array) {
-		return arr.max(array) - arr.min(array);
+		return stat.max(array) - stat.min(array);
 	},
-	
+
 	midrange: function(array) {
-		return arr.range(array) / 2;
+		return stat.range(array) / 2;
 	},
- 
+
 	sum: function(array) {
-		var sum = 0;
-		for (var i = 0, l = array.length; i < l; i++) sum += array[i];
+		var sum = 0, l = array.length;
+		while (l--) sum += array[l];
 		return sum;
 	},
-	
-	mean: function(array) {
-		return arr.sum(array) / array.length;
+
+	product: function(array) {
+		var product = 1, l = array.length;
+		while (l--) product *= array[l];
+		return product;
 	},
-	
+
+	mean: function(array) {
+		return stat.sum(array) / array.length;
+	},
+
+	geometricMean: function(array) {
+		return Math.pow(stat.product(array), 1 / array.length);
+	},
+
 	median: function(array) {
-		array.sort(function(a, b) {
+		[].sort.call(array, function(a, b) {
 			return a - b;
 		});
 		var mid = array.length / 2;
 		return mid % 1 ? array[mid - 0.5] : (array[mid - 1] + array[mid]) / 2;
 	},
-	
+
 	modes: function(array) {
 		if (array.length === 0) return null;
 		var modeMap = {},
 			maxCount = 1,
 			modes = [array[0]];
-		
-		array.forEach(function(val) {			
+
+		[].forEach.call(array, function(val) {
 			if (modeMap[val] === undefined) modeMap[val] = 1;
 			else modeMap[val]++;
 			
@@ -54,33 +64,40 @@ var arr = {
 		});
 		return modes;
 	},
-	
+
 	variance: function(array) {
-		var mean = arr.mean(array);
-		return arr.mean(array.map(function(num) {
+		var mean = stat.mean(array);
+		return stat.mean([].map.call(array, function(num) {
 			return Math.pow(num - mean, 2);
 		}));
 	},
-	
+
 	standardDeviation: function(array) {
-		return Math.sqrt(arr.variance(array));
+		return Math.sqrt(stat.variance(array));
 	},
-	
+
 	meanAbsoluteDeviation: function(array) {
-		var mean = arr.mean(array);
-		return arr.mean(array.map(function(num) {
+		var mean = stat.mean(array);
+		return stat.mean([].map.call(array, function(num) {
 			return Math.abs(num - mean);
 		}));
 	},
-	
+
+	medianAbsoluteDeviation: function(array) {
+		var median = stat.median(array);
+		return stat.median([].map.call(array, function(num) {
+			return Math.abs(num - mean);
+		}));
+	},
+
 	zScores: function(array) {
-		var mean = arr.mean(array);
-		var standardDeviation = arr.standardDeviation(array);
-		return array.map(function(num) {
+		var mean = stat.mean(array);
+		var standardDeviation = stat.standardDeviation(array);
+		return [].map.call(array, function(num) {
 			return (num - mean) / standardDeviation;
 		});
 	}
 };
- 
+
 // Function aliases:
-arr.average = arr.mean;
+stat.average = stat.mean;
