@@ -8,12 +8,15 @@ A collection of JavaScript statistical functions for arrays
  - `range`
  - `midrange`
  - `sum`
+ - `product`
  - `mean` / `average`
+ - `geometricMean`
  - `median`
  - `modes`
  - `variance`
  - `standardDeviation`
  - `meanAbsoluteDeviation`
+ - `medianAbsoluteDeviation`
  - `zScores`
 
-They are all methods of the `stat` object. They all accept an array as their only argument. `arr.modes` and `arr.zScores` return an array, and the rest will return a number.
+They are all methods of the `stat` object. They all accept an array as their only argument. `stat.modes` and `stat.zScores` return an array, and the rest will return a number.
