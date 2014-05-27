@@ -50,7 +50,7 @@ var stat = (function() {
 	function countEach(array) {
 		var obj = {};
 		array.forEach(function(val) {
-			if (has(obj, val)) obj[val]++;
+			if (has.call(obj, val)) obj[val]++;
 			else obj[val] = 1;
 		});
 		return obj;
